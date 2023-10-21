@@ -1,17 +1,19 @@
-# python 3 code to print inverted star
-# pattern 
+import sys
 
-# n is the number of rows in which
-# star is going to be printed.
-n=11
+def invertedstar(n):
+    for i in range(n, 0, -1):
+        print((n-i) * ' ' + i * '*')
 
-# i is going to be enabled to
-# range between n-i t 0 with a
-# decrement of 1 with each iteration.
-# and in print function, for each iteration,
-# ” ” is multiplied with n-i and ‘*’ is
-# multiplied with i to create correct
-# space before of the stars.
-for i in range (n, 0, -1):
-	print((n-i) * ' ' + i * '*')
-	
+if __name__ == "__main__":
+    try:
+        if len(sys.argv) < 2:
+            raise ValueError('-1')
+        n = int(sys.argv[1])
+        if n < 1:
+            raise ValueError('-1')
+    except ValueError:
+        print("\nPlease inform the desired number of lines. Example\n")
+        print("Usage: python3 invertedstar.py <number of lines>\n")
+        quit()
+    
+    invertedstar(n)
