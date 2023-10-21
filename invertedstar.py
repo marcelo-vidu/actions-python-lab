@@ -14,3 +14,4 @@ n=11
 # space before of the stars.
 for i in range (n, 0, -1):
 	print((n-i) * ' ' + i * '*')
+	
