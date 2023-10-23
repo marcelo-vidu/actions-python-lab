@@ -54,7 +54,16 @@ jobs:
           name: python-publish-app-artifact
 
       - name: Deploy to server
+        env:
+          DEPLOY_KEY: ${{ secrets.SENAC_AZURE_VM }}
         run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+          # Add the SSH key to the known hosts
+          ssh-keyscan 13.92.34.6 >> ~/.ssh/known_hosts
+
           ssh azureadmin@13.92.34.6 "mkdir -p /app/data/"
           scp -r python-publish-app-artifact/. azureadmin@13.92.34.6:/app/data/
     
