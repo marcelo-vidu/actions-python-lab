@@ -14,7 +14,6 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -43,4 +42,19 @@ jobs:
       with:
         name: python-publish-app-artifact
         path: ./
-  
+
+  deploy:
+    runs-on: ubuntu-latest  
+    needs: build  
+    
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: python-publish-app-artifact
+
+      - name: Deploy to server
+        run: |
+          ssh azureadmin@13.92.34.6 "mkdir -p /app/data/"
+          scp -r python-publish-app-artifact/. azureadmin@13.92.34.6:/app/data/
+    
