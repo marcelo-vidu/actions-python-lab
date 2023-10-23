@@ -64,7 +64,9 @@ jobs:
           # Add the SSH key to the known hosts
           ssh-keyscan 13.92.34.6 >> ~/.ssh/known_hosts
 
+          echo $HOME
+
           # Deploy the artifact to the server
           ssh azureadmin@13.92.34.6 "mkdir -p /app/data"
-          scp -r actions-python-lab/. azureadmin@13.92.34.6:/app/data/
+          scp -r /home/runner/work/actions-python-lab/actions-python-lab/. azureadmin@13.92.34.6:/app/data/
     
