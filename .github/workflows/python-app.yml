@@ -43,28 +43,28 @@ jobs:
         name: python-publish-app-artifact
         path: ./
 
-  deploy:
-    runs-on: ubuntu-latest  
-    needs: build  
-    
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: python-publish-app-artifact
-
-      - name: Deploy to server
-        env:
-          DEPLOY_KEY: ${{ secrets.SENAC_AZURE_VM }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-
-          # Add the SSH key to the known hosts
-          ssh-keyscan 13.92.34.6 >> ~/.ssh/known_hosts
-
-          # Deploy the artifact to the server
-          ssh azureadmin@13.92.34.6 "mkdir -p /app/data"
-          scp -r ~/work/actions-python-lab/actions-python-lab/* azureadmin@13.92.34.6:/app/data/
+#  deploy:
+#    runs-on: ubuntu-latest  
+#    needs: build  
+#    
+#    steps:
+#      - name: Download artifact
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: python-publish-app-artifact
+#
+#      - name: Deploy to server
+#        env:
+#          DEPLOY_KEY: ${{ secrets.SENAC_AZURE_VM }}
+#        run: |
+#          mkdir -p ~/.ssh
+#          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+#          chmod 600 ~/.ssh/id_rsa
+#
+#          # Add the SSH key to the known hosts
+#          ssh-keyscan 13.92.34.6 >> ~/.ssh/known_hosts
+#
+#          # Deploy the artifact to the server
+#          ssh azureadmin@13.92.34.6 "mkdir -p /app/data"
+#          scp -r ~/work/actions-python-lab/actions-python-lab/* azureadmin@13.92.34.6:/app/data/
     
