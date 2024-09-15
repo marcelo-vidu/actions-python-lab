@@ -51,9 +51,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
         pytest
-        popd
 
     # Publish artifact
     - name: Create artifact
