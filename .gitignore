@@ -161,3 +161,5 @@ cython_debug/
 
 # Drive files
 .DS_Store
+
+.python_packages
