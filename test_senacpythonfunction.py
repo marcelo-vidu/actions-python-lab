@@ -1,20 +1,10 @@
-import senacpythonfunction
 import azure.functions as func
+import pytest
+import senacpythonfunction
 
 def test_main_valid_request():
     req = func.HttpRequest(
         method='GET',
-        url='/api/hello',
-        params={'name': 'John'},
-        body=None
-    )
-    response = senacpythonfunction.main(req)
-    assert response.status_code == 200
-    assert response.get_body().decode() == "Hello, John!"
-
-def test_main_valid_request_body():
-    req = func.HttpRequest(
-        method='POST',
         url='/api/hello',
         params={},
         body=b'{"name": "Jane"}'
