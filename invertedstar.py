@@ -1,19 +1,24 @@
-import sys
+import logging
+import azure.functions as func
 
 def invertedstar(n):
+    result = []
     for i in range(n, 0, -1):
-        print((n-i) * ' ' + i * '*')
+        result.append((n-i) * ' ' + i * '*')
+    return "\n".join(result)
 
-if __name__ == "__main__":
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+
     try:
-        if len(sys.argv) < 2:
-            raise ValueError('-1')
-        n = int(sys.argv[1])
+        n = int(req.params.get('n'))
         if n < 1:
-            raise ValueError('-1')
-    except ValueError:
-        print("\nPlease inform the desired number of lines. Example\n")
-        print("Usage: python3 invertedstar.py <number of lines>\n")
-        quit()
-    
-    invertedstar(n)
+            raise ValueError
+    except (ValueError, TypeError):
+        return func.HttpResponse(
+            "Please provide a valid positive integer for the number of lines. Example: ?n=5",
+            status_code=400
+        )
+
+    result = invertedstar(n)
+    return func.HttpResponse(result, status_code=200)
