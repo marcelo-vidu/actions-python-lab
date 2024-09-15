@@ -1,5 +1,5 @@
-import azure.functions as func
 import logging
+import azure.functions as func
 
 app = func.FunctionApp()
 
