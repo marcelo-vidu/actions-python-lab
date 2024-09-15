@@ -1,4 +1,3 @@
-import sys
 import logging
 import azure.functions as func
 
