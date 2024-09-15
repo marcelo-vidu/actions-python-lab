@@ -1,5 +1,4 @@
 import azure.functions as func
-import pytest
 import senacpythonfunction
 
 def test_main_valid_request():
