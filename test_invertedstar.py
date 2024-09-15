@@ -4,25 +4,21 @@ import invertedstar
 import pytest
 import azure.functions as func
 
-def test_invertedstar_5(capsys):
-    invertedstar.invertedstar(5)
-    captured = capsys.readouterr()
-    assert captured.out == "*****\n ****\n  ***\n   **\n    *\n"
+def test_invertedstar_5():
+    result = invertedstar.invertedstar(5)
+    assert result == "*****\n ****\n  ***\n   **\n    *"
 
-def test_invertedstar_3(capsys):
-    invertedstar.invertedstar(3)
-    captured = capsys.readouterr()
-    assert captured.out == "***\n **\n  *\n"
+def test_invertedstar_3():
+    result = invertedstar.invertedstar(3)
+    assert result == "***\n **\n  *"
 
-def test_invertedstar_1(capsys):
-    invertedstar.invertedstar(1)
-    captured = capsys.readouterr()
-    assert captured.out == "*\n"
+def test_invertedstar_1():
+    result = invertedstar.invertedstar(1)
+    assert result == "*"
 
-def test_invertedstar_0(capsys):
-    invertedstar.invertedstar(0)
-    captured = capsys.readouterr()
-    assert captured.out == ""
+def test_invertedstar_0():
+    result = invertedstar.invertedstar(0)
+    assert result == ""
 
 def test_main_valid_request():
     req = func.HttpRequest(
