@@ -54,7 +54,7 @@ jobs:
 
     - name: Debugging
       run: echo ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-      run: ls -la
+      #run: ls -la
 
     # Publish artifact
     - name: Create artifact
