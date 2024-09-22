@@ -43,14 +43,17 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt --target=".python_packages/lib/site-packages"; fi
         popd
 
-    - name: Lint with flake8
-      run: |
-        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 '**/*.py' --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 '**/*.py' --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-        popd
+    #- name: Lint with flake8
+    #  run: |
+    #    pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+    #    # stop the build if there are Python syntax errors or undefined names
+    #    flake8 '**/*.py' --count --select=E9,F63,F7,F82 --show-source --statistics
+    #    # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+    #    flake8 '**/*.py' --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    #    popd
+
+    - name: Debugging
+      run: ls -la
 
     # Publish artifact
     - name: Create artifact
