@@ -52,9 +52,6 @@ jobs:
         flake8 ~/work/actions-python-lab/actions-python-lab/*.py --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
         popd
 
-    - name: Debugging
-      run: ls -la ~/work/actions-python-lab/actions-python-lab/*.py
-
     # Publish artifact
     - name: Create artifact
       uses: actions/upload-artifact@v3
