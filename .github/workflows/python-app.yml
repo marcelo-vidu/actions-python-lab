@@ -53,7 +53,7 @@ jobs:
     #    popd
 
     - name: Debugging
-      run: echo $env.AZURE_FUNCTIONAPP_PACKAGE_PATH
+      run: pwd
       #run: ls -la
 
     # Publish artifact
